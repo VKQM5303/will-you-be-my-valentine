@@ -13,15 +13,14 @@ const messages = [
 
 let messageIndex = 0;
 
-// prepare audio (NOT autoplay)
-const loveAudio = new Audio("love.mp3");
-loveAudio.loop = true;
-let audioUnlocked = false;
+// background music control
+const audio = document.getElementById("bg-music");
+let musicStarted = false;
 
 function startMusic() {
-    if (!audioUnlocked) {
-        loveAudio.play().catch(() => {});
-        audioUnlocked = true;
+    if (!musicStarted) {
+        audio.play().catch(() => {});
+        musicStarted = true;
     }
 }
 
@@ -42,5 +41,7 @@ function handleNoClick() {
 
 function handleYesClick() {
     startMusic();
-    window.location.href = "yes_page.html";
+
+    document.getElementById("main-screen").style.display = "none";
+    document.getElementById("yes-screen").style.display = "flex";
 }
